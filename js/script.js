@@ -21,8 +21,37 @@ function titleClickHandler(event) {
   currentArticle.classList.add("active");
 }
 
-const links = document.querySelectorAll(".titles a");
+// Titles generator
 
-for (let link of links) {
-  link.addEventListener("click", titleClickHandler);
+const articleSelector = ".page",
+  titleSelector = ".page-title",
+  titleListSelector = ".titles";
+
+function generateTitleLinks() {
+  const titleList = document.querySelector(titleListSelector);
+  titleList.innerHTML = "";
+
+  const articles = document.querySelectorAll(articleSelector);
+
+  let html = "";
+
+  for (let article of articles) {
+    const articleId = article.getAttribute("id");
+    const articleTitle = article.querySelector(titleSelector).innerHTML;
+    const linkHTML =
+      '<li><a href="#' +
+      articleId +
+      '"><span>' +
+      articleTitle +
+      "</span></a></li>";
+
+    html = html + linkHTML;
+  }
+  titleList.innerHTML = html;
+
+  const links = document.querySelectorAll(".titles a");
+  for (let link of links) {
+    link.addEventListener("click", titleClickHandler);
+  }
 }
+generateTitleLinks();
