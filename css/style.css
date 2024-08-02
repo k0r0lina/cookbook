@@ -86,10 +86,13 @@ body {
 
 /* Page */
 .page {
-  display: none;
+  opacity: 0;
+  position: absolute;
+  width: 35%;
 }
 .page.active {
-  display: block;
+  transition: 1s;
+  opacity: 100%;
 }
 
 .page-author {
