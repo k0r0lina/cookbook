@@ -1,7 +1,9 @@
 function titleClickHandler(event) {
+  // Selectors
   const activeLinks = document.querySelectorAll(".titles a.active");
   const activeArticles = document.querySelectorAll(".pages .page.active");
 
+  // Remove class "active"
   for (let activeLink of activeLinks) {
     activeLink.classList.remove("active");
   }
@@ -9,6 +11,9 @@ function titleClickHandler(event) {
   for (let activeArticle of activeArticles) {
     activeArticle.classList.remove("active");
   }
+
+  // Add class "active"
+  this.classList.add("active");
 }
 
 const links = document.querySelectorAll(".titles a");
