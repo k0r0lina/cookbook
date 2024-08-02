@@ -1,4 +1,5 @@
 function titleClickHandler(event) {
+  event.preventDefault();
   // Selectors
   const activeLinks = document.querySelectorAll(".titles a.active");
   const activeArticles = document.querySelectorAll(".pages .page.active");
@@ -14,6 +15,10 @@ function titleClickHandler(event) {
 
   // Add class "active"
   this.classList.add("active");
+
+  const linkHref = this.getAttribute("href");
+  const currentArticle = document.querySelector(linkHref);
+  currentArticle.classList.add("active");
 }
 
 const links = document.querySelectorAll(".titles a");
