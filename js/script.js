@@ -23,18 +23,20 @@ function titleClickHandler(event) {
   currentArticle.classList.add("active");
 }
 
-// Titles generator
+// Global selectors
 
 const articleSelector = ".page",
   titleSelector = ".page-title",
   titleListSelector = ".titles",
   articleTagsSelector = ".page-tags .list-horizontal";
 
-function generateTitleLinks() {
+// Titles generator
+
+function generateTitleLinks(customSelector = "") {
   const titleList = document.querySelector(titleListSelector);
   titleList.innerHTML = "";
 
-  const articles = document.querySelectorAll(articleSelector);
+  const articles = document.querySelectorAll(articleSelector + customSelector);
 
   let html = "";
 
@@ -83,17 +85,26 @@ generateTags();
 
 function tagClickHandler(event) {
   event.preventDefault();
+
   const href = this.getAttribute("href");
-  const tag = document.querySelector(href);
+  const tag = href.replace("#tag-", "");
   const activeTags = document.querySelectorAll('a.active[href^="#tag-"]');
 
   for (let activeTag of activeTags) {
     activeTag.classList.remove("active");
   }
+
+  const tagLinks = document.querySelectorAll('a[href="' + href + '"]');
+  console.log(tagLinks);
+  for (let tagLink of tagLinks) {
+    tagLink.classList.add("active");
+  }
+
+  generateTitleLinks('[data-tags~="' + tag + '"]');
 }
 
 function addClickListenersToTags() {
-  const links = document.querySelectorAll(articleTagsSelector);
+  const links = document.querySelectorAll(".page-tags .list-horizontal a");
 
   for (let link of links) {
     link.addEventListener("click", tagClickHandler);
