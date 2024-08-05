@@ -1,3 +1,5 @@
+// Titles handler
+
 function titleClickHandler(event) {
   event.preventDefault();
   // Selectors
@@ -25,7 +27,8 @@ function titleClickHandler(event) {
 
 const articleSelector = ".page",
   titleSelector = ".page-title",
-  titleListSelector = ".titles";
+  titleListSelector = ".titles",
+  articleTagsSelector = ".page-tags .list-horizontal";
 
 function generateTitleLinks() {
   const titleList = document.querySelector(titleListSelector);
@@ -55,3 +58,45 @@ function generateTitleLinks() {
   }
 }
 generateTitleLinks();
+
+// Tags generator
+
+function generateTags() {
+  const articles = document.querySelectorAll(articleSelector);
+
+  for (let article of articles) {
+    const articleTags = article.querySelector(articleTagsSelector);
+
+    let html = "";
+    const tags = article.getAttribute("data-tags").split(" ");
+
+    for (let tag of tags) {
+      const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + "</a></li>";
+      html = html + linkHTML;
+    }
+    articleTags.innerHTML = html;
+  }
+}
+generateTags();
+
+// Tags handler
+
+function tagClickHandler(event) {
+  event.preventDefault();
+  const href = this.getAttribute("href");
+  const tag = document.querySelector(href);
+  const activeTags = document.querySelectorAll('a.active[href^="#tag-"]');
+
+  for (let activeTag of activeTags) {
+    activeTag.classList.remove("active");
+  }
+}
+
+function addClickListenersToTags() {
+  const links = document.querySelectorAll(articleTagsSelector);
+
+  for (let link of links) {
+    link.addEventListener("click", tagClickHandler);
+  }
+}
+addClickListenersToTags();

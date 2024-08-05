@@ -94,6 +94,7 @@ body {
 .page.active {
   transition: 1s;
   opacity: 100%;
+  z-index: 1;
 }
 
 .page-author {
@@ -105,6 +106,11 @@ body {
 }
 .page-tags p {
   margin: 0 10px 0 0;
+}
+
+/* Tags */
+.page-tags li {
+  margin-left: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */
