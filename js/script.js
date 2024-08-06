@@ -6,7 +6,6 @@ function titleClickHandler(event) {
   const activeLinks = document.querySelectorAll(".titles a.active");
   const activeArticles = document.querySelectorAll(".pages .page.active");
 
-  // Remove class "active"
   for (let activeLink of activeLinks) {
     activeLink.classList.remove("active");
   }
@@ -15,7 +14,6 @@ function titleClickHandler(event) {
     activeArticle.classList.remove("active");
   }
 
-  // Add class "active"
   this.classList.add("active");
 
   const linkHref = this.getAttribute("href");
@@ -28,7 +26,8 @@ function titleClickHandler(event) {
 const articleSelector = ".page",
   titleSelector = ".page-title",
   titleListSelector = ".titles",
-  articleTagsSelector = ".page-tags .list-horizontal";
+  articleTagsSelector = ".page-tags .list-horizontal",
+  articleAuthorSelector = ".page-author";
 
 // Titles generator
 
@@ -111,3 +110,17 @@ function addClickListenersToTags() {
   }
 }
 addClickListenersToTags();
+
+// Authors generator
+
+function generateAuthors() {
+  const articles = document.querySelectorAll(articleSelector);
+
+  for (let article of articles) {
+    const authorElement = article.querySelector(articleAuthorSelector);
+    const authorName = article.getAttribute("data-author");
+    authorElement.innerHTML =
+      "by " + '<a href="#' + authorName + '">' + authorName + "</a>";
+  }
+}
+generateAuthors();

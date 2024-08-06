@@ -103,16 +103,27 @@ body {
   }
 }
 
+.page-author a {
+  color: $color-dark;
+  text-decoration: none;
+}
+.page-author a:hover {
+  text-decoration: underline;
+}
+
 /* Page */
 
 .page {
   opacity: 0;
-  position: absolute;
-  width: 80%;
+  position: relative;
+  width: 100%;
+  height: 0;
+  transition: opacity 1s, height 0s 1s;
+  overflow: hidden;
   &.active {
-    transition: 1s;
-    opacity: 100%;
-    z-index: 1;
+    opacity: 1;
+    height: auto;
+    transition: opacity 1s, height 0s;
   }
 }
 
