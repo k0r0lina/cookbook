@@ -31,7 +31,9 @@ const articleSelector = ".page",
   titleListSelector = ".titles",
   articleTagsSelector = ".page-tags .list-horizontal",
   articleAuthorSelector = ".page-author",
-  tagsListSelector = ".tags.list";
+  tagsListSelector = ".tags.list",
+  cloudClassCount = 5,
+  cloudClassPrefix = "tag-size-";
 
 /* Titles generator */
 
@@ -69,12 +71,21 @@ generateTitleLinks();
 /* Calculate Tags Param */
 
 function calculateTagsParams(tags) {
+  // Extract tag counts into an array
   const tagCounts = Object.values(tags);
+
+  // Find the min and max of the array
   const min = Math.min(...tagCounts);
   const max = Math.max(...tagCounts);
 
-  return { min, max };
+  const params = { min, max };
+
+  return params;
 }
+
+/* Calculate Tag Class */
+
+function calculateTagsClass(count, params) {}
 
 /* Tags generator */
 
@@ -107,23 +118,24 @@ function generateTags() {
 
   // Select tags in right column
   const tagList = document.querySelector(tagsListSelector);
-
-  const tagsParam = calculateTagsParams(allTags);
-  console.log(tagsParam);
+  const tagsParams = calculateTagsParams(allTags);
 
   // Generate tags
   let allTagsHTML = "";
 
   for (let tag in allTags) {
-    allTagsHTML +=
-      '<li><a href="#tag-' +
+    const tagClass = calculateTagsClass(allTags[tag], tagsParams);
+    const taglinkHTML =
+      '<li><a class="' +
+      tagClass +
+      '" href="#' +
+      "tag-" +
       tag +
       '">' +
       tag +
-      " (" +
-      allTags[tag] +
-      ") " +
       "</a></li>";
+    console.log(taglinkHTML);
+    allTagsHTML += taglinkHTML;
   }
 
   tagList.innerHTML = allTagsHTML;
