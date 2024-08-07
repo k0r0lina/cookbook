@@ -69,7 +69,7 @@ generateTitleLinks();
 /* Tags generator */
 
 function generateTags() {
-  let allTags = [];
+  let allTags = {};
 
   // Selector
   const articles = document.querySelectorAll(articleSelector);
@@ -86,8 +86,10 @@ function generateTags() {
       html += linkHTML;
 
       // Check if this link is NOT already in allTags
-      if (allTags.indexOf(linkHTML) == -1) {
-        allTags.push(linkHTML);
+      if (!allTags.hasOwnProperty(tag)) {
+        allTags[tag] = 1;
+      } else {
+        allTags[tag]++;
       }
     }
     articleTags.innerHTML = html;
@@ -96,7 +98,21 @@ function generateTags() {
   // Select tags in right column
   const tagList = document.querySelector(tagsListSelector);
   // Generate tags
-  tagList.innerHTML = allTags.join(" ");
+  let allTagsHTML = "";
+
+  for (let tag in allTags) {
+    allTagsHTML +=
+      '<li><a href="#tag-' +
+      tag +
+      '">' +
+      tag +
+      " (" +
+      allTags[tag] +
+      ") " +
+      "</a></li>";
+  }
+
+  tagList.innerHTML = allTagsHTML;
 }
 generateTags();
 
