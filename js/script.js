@@ -66,6 +66,16 @@ function generateTitleLinks(customSelector = "") {
 }
 generateTitleLinks();
 
+/* Calculate Tags Param */
+
+function calculateTagsParams(tags) {
+  const tagCounts = Object.values(tags);
+  const min = Math.min(...tagCounts);
+  const max = Math.max(...tagCounts);
+
+  return { min, max };
+}
+
 /* Tags generator */
 
 function generateTags() {
@@ -97,6 +107,10 @@ function generateTags() {
 
   // Select tags in right column
   const tagList = document.querySelector(tagsListSelector);
+
+  const tagsParam = calculateTagsParams(allTags);
+  console.log(tagsParam);
+
   // Generate tags
   let allTagsHTML = "";
 
