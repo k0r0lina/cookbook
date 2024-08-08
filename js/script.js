@@ -85,7 +85,14 @@ function calculateTagsParams(tags) {
 
 /* Calculate Tag Class */
 
-function calculateTagsClass(count, params) {}
+function calculateTagsClass(count, params) {
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor(percentage * (cloudClassCount - 1) + 1);
+
+  return classNumber;
+}
 
 /* Tags generator */
 
@@ -125,8 +132,9 @@ function generateTags() {
 
   for (let tag in allTags) {
     const tagClass = calculateTagsClass(allTags[tag], tagsParams);
+
     const taglinkHTML =
-      '<li><a class="' +
+      '<li><a class="tag-size-' +
       tagClass +
       '" href="#' +
       "tag-" +
@@ -134,7 +142,7 @@ function generateTags() {
       '">' +
       tag +
       "</a></li>";
-    console.log(taglinkHTML);
+
     allTagsHTML += taglinkHTML;
   }
 
@@ -170,7 +178,7 @@ function tagClickHandler(event) {
 
 function addClickListenersToTags() {
   // Selector
-  const links = document.querySelectorAll(".page-tags .list-horizontal a");
+  const links = document.querySelectorAll('a[href^="#tag-"]');
 
   // Add eventListener to tags
   for (let link of links) {
@@ -224,10 +232,15 @@ function authorClickHandler(event) {
 function addClickListenersToAuthors() {
   // Selector
   const authorLinks = document.querySelectorAll(".page-author a");
+  const sideLinks = document.querySelectorAll(".authors.list a");
 
   // Add eventListener to authors
   for (let authorLink of authorLinks) {
     authorLink.addEventListener("click", authorClickHandler);
+  }
+
+  for (let sideLink of sideLinks) {
+    sideLink.addEventListener("click", authorClickHandler);
   }
 }
 addClickListenersToAuthors();

@@ -142,4 +142,32 @@ body {
 
 .page-tags li {
   margin-left: 5px;
+  a {
+    text-decoration: none;
+    color: $color-dark;
+  }
+}
+
+.list.tags li {
+  display: inline-block;
+  margin-left: 5px;
+  a {
+    text-decoration: none;
+    color: $color-dark;
+  }
+}
+
+/* Tag sizes */
+
+.tag-size-1 {
+  font-size: 18px;
+}
+.tag-size-2 {
+  font-size: 22px;
+}
+.tag-size-3 {
+  font-size: 26px;
+}
+.tag-size-5 {
+  font-size: 30px;
 }
