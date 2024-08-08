@@ -100,6 +100,9 @@ body {
 .authors {
   li {
     margin-bottom: 12px;
+    a {
+      color: $color-dark;
+    }
   }
 }
 
@@ -127,6 +130,10 @@ body {
   }
 }
 
+.titles.list li a:hover {
+  opacity: 60%;
+}
+
 .page-author {
   font-style: italic;
 }
@@ -147,6 +154,9 @@ body {
     color: $color-dark;
   }
 }
+.page-tags li a:hover {
+  text-decoration: underline;
+}
 
 .list.tags li {
   display: inline-block;
@@ -155,6 +165,9 @@ body {
     text-decoration: none;
     color: $color-dark;
   }
+}
+.list.tags li a:hover {
+  text-decoration: underline;
 }
 
 /* Tag sizes */
@@ -167,6 +180,9 @@ body {
 }
 .tag-size-3 {
   font-size: 26px;
+}
+.tag-size-4 {
+  font-size: 28px;
 }
 .tag-size-5 {
   font-size: 30px;

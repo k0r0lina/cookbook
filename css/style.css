@@ -84,6 +84,9 @@ body {
 .authors li {
   margin-bottom: 12px;
 }
+.authors li a {
+  color: #444;
+}
 
 .page-author a {
   color: #444;
@@ -109,6 +112,10 @@ body {
   transition: opacity 1s, height 0s;
 }
 
+.titles.list li a:hover {
+  opacity: 60%;
+}
+
 .page-author {
   font-style: italic;
 }
@@ -129,6 +136,10 @@ body {
   color: #444;
 }
 
+.page-tags li a:hover {
+  text-decoration: underline;
+}
+
 .list.tags li {
   display: inline-block;
   margin-left: 5px;
@@ -136,6 +147,10 @@ body {
 .list.tags li a {
   text-decoration: none;
   color: #444;
+}
+
+.list.tags li a:hover {
+  text-decoration: underline;
 }
 
 /* Tag sizes */
@@ -149,6 +164,10 @@ body {
 
 .tag-size-3 {
   font-size: 26px;
+}
+
+.tag-size-4 {
+  font-size: 28px;
 }
 
 .tag-size-5 {
